@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../src/style.css">
+    <title>Weather App</title>
+</head>
+<body>
+    <div class="header">
+        <div class="title">Weatherer</div>
+        <div class="search">
+            <input type="search" placeholder="Location">
+            <button>Get weather</button>
+        </div>
+        <div class="units">
+            <label for="units">Freedom or Metric?</label>
+            <input type="checkbox" id="units">
+        </div>
+    </div>
+    <div class="main">
+        <div class="current-holder"></div>
+        <div class="hourly-holder"></div>
+        <div class="daily-holder"></div>
+    </div>
+    <script src="./main.js"></script>
+</body>
+</html>
