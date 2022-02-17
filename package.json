@@ -1,0 +1,23 @@
+{
+  "name": "weather-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/heppleton/weather-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/heppleton/weather-app/issues"
+  },
+  "homepage": "https://github.com/heppleton/weather-app#readme",
+  "devDependencies": {
+    "webpack": "^5.69.0",
+    "webpack-cli": "^4.9.2"
+  }
+}

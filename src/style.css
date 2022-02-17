@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+:root {
+    --accent-color: #00ccd6;
+    --weather-image: url("./images/weather.jpg");
+}
+
+input, button {
+    appearance: none;
+}
+
+body {
+    font-family: Montserrat;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.8);
+    background-image: var(--weather-image);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    grid-template-rows: 6rem auto;
+}
+
+.header {
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 10rem minmax(20rem, auto) 10rem;
+    justify-items: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.title{
+    color: var(--accent-color);
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.search {
+    display: flex;
+    gap: 1rem;
+}
+
+input[type="search"] {
+    flex: 1;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: var(--accent-color);
+    font-family: "Montserrat";
+    height: 2rem;
+    min-width: 6rem;
+    border-radius: 2rem;
+    padding-left: 1rem;
+    border: none;
+    outline: none;
+}
+
+button {
+    background-color: var(--accent-color);
+    color: white;
+    font-family: "Montserrat";
+    font-weight: bold;
+    padding: 0 0.5rem;
+    border-radius: 2rem;
+    border: none;
+    outline: none;
+}
+
+.main {
+    width: max(25rem, 40vw);
+    margin: max(2rem, 10vh);
+    display: grid;
+    grid-template-rows: 2fr 1fr 1fr;
+    justify-self: center;
+}
+
+.current-holder {
+    border: solid 1px magenta;
+}
+
+.placename {
+    font-size: max(2rem, 3vw);
+    font-weight: bold;
+}
+
+.state {
+    font-size: max(1rem, 1.5vw);
+    font-weight: bold;
+}
+
+.big-holder {
+
+}
+
+.weather {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+}
+
+.hourly-holder {
+    border: solid 1px yellow;
+}
+
+.daily-holder {
+    border: solid 1px cyan;
+}
