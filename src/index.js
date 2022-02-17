@@ -2,7 +2,7 @@
 
 import { newRequest } from "./retrieve.js"
 
-newRequest("Dublin");
+newRequest("Brigg");
 
 /*
 Changes:

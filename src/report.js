@@ -1,3 +1,5 @@
+const MS_TO_MPH = 2.2369362921;
+
 const makeTempHolder = (temp) => {
     const tempHolder = document.createElement("div")
     tempHolder.classList.add("big-holder");
@@ -6,14 +8,19 @@ const makeTempHolder = (temp) => {
     return tempHolder;
 }
 
-const makeWindHolder = (speed, degress) => {
+const makeWindHolder = (speed, degrees) => {
     const windHolder = document.createElement("div");
+    windHolder.classList.add("big-holder");
+    
     const windArrow = document.createElement("img");
-    windArrow.src = "../src/icons/wind_arrow.svg";
+    windArrow.src = "../src/icons/windarrow.svg";
+    windArrow.style.setProperty("transform", `rotate(${degrees}deg)`);
+    windArrow.classList.add("wind-arrow");
 
-    //wind.textContent = `${report.current.wind_speed}, ${report.current.wind_deg}`;
+    const unitSpeed = Math.round(speed * MS_TO_MPH);
+    windHolder.textContent = unitSpeed;
     windHolder.appendChild(windArrow);
-    return windHolder
+    return windHolder;
 }
 
 const createCurrent = (report) => {

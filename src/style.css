@@ -72,12 +72,18 @@ button {
     width: max(25rem, 40vw);
     margin: max(2rem, 10vh);
     display: grid;
-    grid-template-rows: 2fr 1fr 1fr;
+    grid-template-rows: 1.5fr 1fr 1fr;
     justify-self: center;
 }
 
 .current-holder {
     border: solid 1px magenta;
+}
+
+.current-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
 .placename {
@@ -91,13 +97,18 @@ button {
 }
 
 .big-holder {
-
+    position: relative;
+    font-size: max(2rem, 2vw);
+    font-weight: bold;
+    display: flex;
 }
 
 .weather {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 10rem;
     justify-items: center;
+    align-items: center;
 }
 
 .hourly-holder {
