@@ -76,8 +76,8 @@ button {
     justify-self: center;
 }
 
-.current-holder {
-    border: solid 1px magenta;
+.current-outer {
+
 }
 
 .current-layout {
@@ -100,7 +100,6 @@ button {
     position: relative;
     font-size: max(2rem, 2vw);
     font-weight: bold;
-    display: flex;
 }
 
 .weather {
@@ -111,8 +110,27 @@ button {
     align-items: center;
 }
 
-.hourly-holder {
-    border: solid 1px yellow;
+.wind-arrow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.hourly-outer {
+    overflow-x: hidden;
+    font-weight: bold;
+}
+
+.hourly-inner {
+    display: grid;
+    grid-template-columns: repeat(24, 6rem);
+    overflow-x: scroll;
+}
+
+.small-holder {
+    border: solid 0.5px rgba(255, 255, 255, 0.8);
+    padding: 0.2rem;
 }
 
 .daily-holder {

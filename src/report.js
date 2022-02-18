@@ -8,17 +8,31 @@ const makeTempHolder = (temp) => {
     return tempHolder;
 }
 
+const makeTypeHolder = (type) => {
+    const typeHolder = document.createElement("div");
+    typeHolder.classList.add("big-holder");
+    
+    const typeIcon = document.createElement("img");
+    typeIcon.src = `../src/icons/${type.icon}@2x.png`;
+
+    typeHolder.appendChild(typeIcon);
+
+    return typeHolder;
+}
+
 const makeWindHolder = (speed, degrees) => {
     const windHolder = document.createElement("div");
     windHolder.classList.add("big-holder");
-    
-    const windArrow = document.createElement("img");
-    windArrow.src = "../src/icons/windarrow.svg";
-    windArrow.style.setProperty("transform", `rotate(${degrees}deg)`);
-    windArrow.classList.add("wind-arrow");
-
     const unitSpeed = Math.round(speed * MS_TO_MPH);
     windHolder.textContent = unitSpeed;
+
+    const windArrow = document.createElement("div");
+    const arrow = document.createElement("img")
+    arrow.src = "../src/icons/windarrow.svg";
+    arrow.style.setProperty("transform", `rotate(${degrees}deg)`);
+    windArrow.classList.add("wind-arrow");
+    windArrow.appendChild(arrow);
+
     windHolder.appendChild(windArrow);
     return windHolder;
 }
@@ -33,31 +47,57 @@ const createCurrent = (report) => {
     const state = document.createElement("div");
     state.classList.add("state");
     state.textContent = report.state;
-    
-    const weather = document.createElement("div");
-    weather.classList.add("weather");
-    const type = document.createElement("div");
-    type.textContent = "weather";
 
+    const weather = document.createElement("div");
+    weather.classList.add("weather")
     weather.append(makeTempHolder(report.current.temp), 
         makeWindHolder(report.current.wind_speed, report.current.wind_deg),
-        type);    
+        makeTypeHolder(report.current.weather[0])
+        );
+
     layout.append(placename, state, weather);
 
-    const holder = document.querySelector(".current-holder");
-    holder.replaceChildren(layout);
+    const outer = document.querySelector(".current-outer");
+    outer.replaceChildren(layout);
 
-/*Today:
-current.temp, 
-current.wind_speed, current.wind_deg, 
-current.weather (.id, .main, .icon)
-
-need separate little functions for displaying temp, wind, and weather*/
 }
+
+const createHourly = (hourly) => {
+    const outer = document.querySelector(".hourly-outer");
+    outer.replaceChildren();
+    outer.textContent = "Next 24 hours"
+
+    const inner = document.createElement("div");
+    inner.classList.add("hourly-inner");
+    for (let i = 1; i < 25; i++) {
+        const hour = hourly[i];
+        console.log(hour);
+
+        const hourHolder = document.createElement("div");
+        hourHolder.classList.add("small-holder");
+
+        const timeHolder = document.createElement("div");
+        console.log(hour.dt);
+        const time = new Date(hour.dt * 1000);
+        const unitTime = time.getHours();
+        timeHolder.textContent = `${unitTime}:00`;
+
+        const typeIcon = document.createElement("img");
+        console.log(hour);
+        typeIcon.src = `../src/icons/${hour.weather[0].icon}@2x.png`;
+
+
+        hourHolder.append(timeHolder, typeIcon);
+        inner.append(hourHolder);
+    }
+    outer.appendChild(inner);
+}
+
+
 
 const displayReport = (report) => {
     createCurrent(report);
-
+    createHourly(report.hourly);
 }
 
 export { displayReport }

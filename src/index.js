@@ -2,14 +2,16 @@
 
 import { newRequest } from "./retrieve.js"
 
-newRequest("Brigg");
+newRequest("Berlin");
 
 /*
 Changes:
 2. Add error catching to location to check if place exists.
 3. find picture for each weather id code?
-
-https://openweathermap.org/weather-conditions#Weather-Condition-Codes-2
+4. Error checking if takes too long to come back.
+5. General error just if something else is thrown.
+6. create Units modules to automatically deal with temp, speed, hours, and days
+7. rename curent-holder and current-layout to outer and inner
 
     Write the functions that process the JSON data you’re getting from the API and return an object with only the data you require for your app.
     Set up a simple form that will let users input their location and will fetch the weather info (still just console.log() it).
