@@ -2,7 +2,7 @@
 
 import { newRequest } from "./retrieve.js"
 
-newRequest("Skegness");
+newRequest("Malaga");
 
 document.getElementById("search-button").addEventListener("click", () => {
     newRequest(document.getElementById("search-input").value);
@@ -15,7 +15,6 @@ Changes:
 4. Error checking if takes too long to come back.
 5. General error just if something else is thrown.
 6. create Units modules to automatically deal with temp, speed, hours, and days
-7. rename curent-holder and current-layout to outer and inner
 8. separate little function to make wind arrow, so that it is perfect every time.
 9. lookup table for backgrounds.
 10. make my own svg icons.

@@ -47,7 +47,7 @@ body {
 input[type="search"] {
     flex: 1;
     background-color: rgba(255, 255, 255, 0.8);
-    color: var(--accent-color);
+    color: black;
     font-family: "Montserrat";
     height: 2rem;
     min-width: 6rem;
@@ -70,17 +70,14 @@ button {
 
 .main {
     width: max(25rem, 40vw);
-    margin: max(1rem, 5vh);
+    margin: max(1rem, 3vh);
     display: grid;
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: 30%;
+    align-content: start;
     justify-self: center;
 }
 
-.current-outer {
-
-}
-
-.current-layout {
+.current-inner {
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -91,35 +88,19 @@ button {
     font-weight: bold;
 }
 
-.state {
+.country {
     font-size: max(1rem, 1.5vw);
     font-weight: bold;
 }
 
-.big-holder {
-    position: relative;
+.weather {
     font-size: max(2rem, 2vw);
     font-weight: bold;
-}
-
-.weather {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 5rem;
     justify-items: center;
     align-items: center;
-}
-
-.wind-holder {
-    position: relative;
-    padding: 1.5rem;
-}
-
-.wind-arrow {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
 }
 
 .hourly-outer {
@@ -135,16 +116,14 @@ button {
 }
 
 .small-holder {
+    position: relative;
     margin: 0.1rem;
     backdrop-filter: brightness(0.7);
-    padding: 0.2rem;
+    padding: 0.6rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.small-arrow {
-    width: 4rem;
+    gap: 1rem;
 }
 
 .daily-outer {
@@ -157,4 +136,36 @@ button {
     grid-template-columns: repeat(7, 1fr);
     overflow-x: scroll;
     overflow-y: hidden;
+}
+
+/*Weather Icons*/
+.weather-icon-small {
+    width: 50px;
+    height: 50px;
+}
+
+.weather-icon-big {
+    width: 150px;
+    height: 150px;
+}
+
+/*Wind Arrow*/
+.wind-arrow-outer {
+    position: relative;
+    padding: 1.5rem;
+}
+
+.wind-arrow-inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: flex;
+}
+
+.wind-arrow-small {
+    transform: translate(-50%, -50%) scale(0.5);
+}
+
+.wind-arrow-big {
+    transform: translate(-50%, -50%);
 }

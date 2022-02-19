@@ -3,8 +3,8 @@ import { displayReport } from "./report.js";
 const OWM_API_KEY = "0ec437db8343a627d6380c3290f18de6";
 
 /*Take location and weather data and returns as a single object.*/
-const createReport = ({ name, state }, { current, hourly, daily }) => {
-    return { name, state, current, hourly, daily }
+const createReport = ({ name, state, country }, { current, hourly, daily }) => {
+    return { name, state, country, current, hourly, daily }
 }
 
 const getLatLon = async (placename) => {
@@ -20,10 +20,15 @@ const getWeather = async ({ lat, lon }) => {
 }
 
 const newRequest = async (searchQuery) => {
-    const locationData = await getLatLon(searchQuery).then(data => data[0]);
-    const weatherData = await getWeather(locationData)
-    const weatherReport = createReport(locationData, weatherData);
-    displayReport(weatherReport);
+    try {
+        const locationData = await getLatLon(searchQuery).then(data => data[0]);
+        const weatherData = await getWeather(locationData)
+        const weatherReport = createReport(locationData, weatherData);
+        displayReport(weatherReport);
+    }
+    catch (error) {
+        console.log(error);
+    }
 }
 
 export { newRequest }
