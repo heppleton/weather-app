@@ -3,8 +3,8 @@ import { displayReport } from "./report.js";
 const OWM_API_KEY = "0ec437db8343a627d6380c3290f18de6";
 
 /*Take location and weather data and returns as a single object.*/
-const createReport = ({ name, state, country }, { current, hourly, daily }) => {
-    return { name, state, country, current, hourly, daily }
+const createReport = ({ name, state, country }, { current, hourly, daily, timezone_offset }) => {
+    return { name, state, country, current, hourly, daily, timezone_offset }
 }
 
 const getLatLon = async (placename) => {

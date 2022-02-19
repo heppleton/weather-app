@@ -1,7 +1,7 @@
 import { makeComplexElement, makeWindArrow } from "./helper";
 import { units } from "./units";
 
-const MS_TO_MPH = 2.2369362921;
+let savedReport;
 
 const makeTypeHolder = (type, size) => {
     const typeHolder = makeComplexElement("div", []);    
@@ -31,7 +31,7 @@ const createCurrent = (report) => {
     outer.replaceChildren(inner);
 }
 
-const createHourly = (hourly) => {
+const createHourly = (hourly, timezone) => {
     const outer = document.querySelector(".hourly-outer");
     outer.replaceChildren();
     outer.textContent = "Next 24 hours"
@@ -41,7 +41,7 @@ const createHourly = (hourly) => {
         const hour = hourly[i];
         const hourHolder = makeComplexElement("div", ["small-holder"]);
         hourHolder.append(
-            makeComplexElement("div", [], units.getTime(hour.dt)),
+            makeComplexElement("div", [], units.getTime(hour.dt, timezone)),
             makeTypeHolder(hour.weather[0], "small"),
             makeComplexElement("div", [], units.getTemp(hour.temp)),
             makeWindArrow(hour.wind_speed, hour.wind_deg, "small")
@@ -57,47 +57,28 @@ const createDaily = (daily) => {
     outer.textContent = "Next 7 days"
 
     const inner = makeComplexElement("div", ["daily-inner"]);
-
     for (let i = 1; i < 8; i++) {
         const day = daily[i];
         const dayHolder = makeComplexElement("div", ["small-holder"]);
-
-        const timeHolder = document.createElement("div");
-        const time = new Date(day.dt * 1000);
-        const unitTime = new Intl.DateTimeFormat("en-US", { weekday: "long" }).format(time);
-        timeHolder.textContent = unitTime;
-
-        const typeIcon = document.createElement("img");
-        typeIcon.src = `../src/icons/${day.weather[0].icon}.svg`;
-
-        const tempHolder = document.createElement("div")
-        const unitTemp = Math.round(day.temp.max - 273.15)
-        tempHolder.textContent = `${unitTemp}\u2103`;
-
-        const windHolder = document.createElement("div");
-        windHolder.classList.add("wind-holder");
-        const unitSpeed = Math.round(day.wind_speed * MS_TO_MPH);
-        windHolder.textContent = unitSpeed;    
-        const windArrow = document.createElement("div");
-        const arrow = document.createElement("img")
-        arrow.src = "../src/icons/windarrow.svg";
-        arrow.classList.add("small-arrow");
-        arrow.style.setProperty("transform", `rotate(${day.wind_deg}deg)`);
-        windArrow.classList.add("wind-arrow");
-        windArrow.appendChild(arrow);
-        windHolder.appendChild(windArrow);
-
-        dayHolder.append(timeHolder, typeIcon, tempHolder, windHolder);
+        dayHolder.append(
+            makeComplexElement("div", [], units.getDay(day.dt)),
+            makeTypeHolder(day.weather[0], "small"),
+            makeComplexElement("div", [], units.getTemp(day.temp.max)),
+            makeWindArrow(day.wind_speed, day.wind_deg, "small")
+        );
         inner.append(dayHolder);
     }
     outer.appendChild(inner);
 }
 
-
-const displayReport = (report) => {
+const displayReport = (report = savedReport) => {
+    savedReport = report;
     createCurrent(report);
-    createHourly(report.hourly);
+    createHourly(report.hourly, report.timezone_offset);
     createDaily(report.daily);
+    document.documentElement.style.setProperty("--weather-image",
+        `url("./images/${report.current.weather[0].icon}.jpg")`);
+    console.log(`url("./images/${report.current.weather[0].icon}.jpg"`);
 }
 
 export { displayReport }
