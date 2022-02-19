@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 :root {
-    --accent-color: #00ccd6;
-    --weather-image: url("./images/weather.jpg");
+    --accent-color: rgba(0, 204, 214, 0.8);
+    --weather-image: url("./images/bluefells.jpg");
 }
 
 input, button {
@@ -70,9 +70,9 @@ button {
 
 .main {
     width: max(25rem, 40vw);
-    margin: max(2rem, 10vh);
+    margin: max(1rem, 5vh);
     display: grid;
-    grid-template-rows: 1.5fr 1fr 1fr;
+    grid-template-rows: repeat(3, 1fr);
     justify-self: center;
 }
 
@@ -105,9 +105,14 @@ button {
 .weather {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 10rem;
+    grid-template-rows: 5rem;
     justify-items: center;
     align-items: center;
+}
+
+.wind-holder {
+    position: relative;
+    padding: 1.5rem;
 }
 
 .wind-arrow {
@@ -124,15 +129,32 @@ button {
 
 .hourly-inner {
     display: grid;
-    grid-template-columns: repeat(24, 6rem);
+    grid-template-columns: repeat(24, 1fr);
     overflow-x: scroll;
+    overflow-y: hidden;
 }
 
 .small-holder {
-    border: solid 0.5px rgba(255, 255, 255, 0.8);
+    margin: 0.1rem;
+    backdrop-filter: brightness(0.7);
     padding: 0.2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.daily-holder {
-    border: solid 1px cyan;
+.small-arrow {
+    width: 4rem;
+}
+
+.daily-outer {
+    overflow-x: hidden;
+    font-weight: bold;
+}
+
+.daily-inner {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    overflow-x: scroll;
+    overflow-y: hidden;
 }

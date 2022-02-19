@@ -13,7 +13,7 @@ const makeTypeHolder = (type) => {
     typeHolder.classList.add("big-holder");
     
     const typeIcon = document.createElement("img");
-    typeIcon.src = `../src/icons/${type.icon}@2x.png`;
+    typeIcon.src = `../src/icons/${type.icon}.svg`;
 
     typeHolder.appendChild(typeIcon);
 
@@ -62,6 +62,51 @@ const createCurrent = (report) => {
 
 }
 
+const createDaily = (daily) => {
+    console.log(daily);
+
+    const outer = document.querySelector(".daily-outer");
+    outer.replaceChildren();
+    outer.textContent = "Next 7 days"
+    const inner = document.createElement("div");
+    inner.classList.add("daily-inner");
+    for (let i = 1; i < 8; i++) {
+        const day = daily[i];
+
+        const dayHolder = document.createElement("div");
+        dayHolder.classList.add("small-holder");
+
+        const timeHolder = document.createElement("div");
+        const time = new Date(day.dt * 1000);
+        const unitTime = new Intl.DateTimeFormat("en-US", { weekday: "long" }).format(time);
+        timeHolder.textContent = unitTime;
+
+        const typeIcon = document.createElement("img");
+        typeIcon.src = `../src/icons/${day.weather[0].icon}.svg`;
+
+        const tempHolder = document.createElement("div")
+        const unitTemp = Math.round(day.temp.max - 273.15)
+        tempHolder.textContent = `${unitTemp}\u2103`;
+
+        const windHolder = document.createElement("div");
+        windHolder.classList.add("wind-holder");
+        const unitSpeed = Math.round(day.wind_speed * MS_TO_MPH);
+        windHolder.textContent = unitSpeed;    
+        const windArrow = document.createElement("div");
+        const arrow = document.createElement("img")
+        arrow.src = "../src/icons/windarrow.svg";
+        arrow.classList.add("small-arrow");
+        arrow.style.setProperty("transform", `rotate(${day.wind_deg}deg)`);
+        windArrow.classList.add("wind-arrow");
+        windArrow.appendChild(arrow);
+        windHolder.appendChild(windArrow);
+
+        dayHolder.append(timeHolder, typeIcon, tempHolder, windHolder);
+        inner.append(dayHolder);
+    }
+    outer.appendChild(inner);
+}
+
 const createHourly = (hourly) => {
     const outer = document.querySelector(".hourly-outer");
     outer.replaceChildren();
@@ -71,23 +116,36 @@ const createHourly = (hourly) => {
     inner.classList.add("hourly-inner");
     for (let i = 1; i < 25; i++) {
         const hour = hourly[i];
-        console.log(hour);
 
         const hourHolder = document.createElement("div");
         hourHolder.classList.add("small-holder");
 
         const timeHolder = document.createElement("div");
-        console.log(hour.dt);
         const time = new Date(hour.dt * 1000);
         const unitTime = time.getHours();
         timeHolder.textContent = `${unitTime}:00`;
 
         const typeIcon = document.createElement("img");
-        console.log(hour);
-        typeIcon.src = `../src/icons/${hour.weather[0].icon}@2x.png`;
+        typeIcon.src = `../src/icons/${hour.weather[0].icon}.svg`;
 
+        const tempHolder = document.createElement("div")
+        const unitTemp = Math.round(hour.temp - 273.15)
+        tempHolder.textContent = `${unitTemp}\u2103`;
 
-        hourHolder.append(timeHolder, typeIcon);
+        const windHolder = document.createElement("div");
+        windHolder.classList.add("wind-holder");
+        const unitSpeed = Math.round(hour.wind_speed * MS_TO_MPH);
+        windHolder.textContent = unitSpeed;    
+        const windArrow = document.createElement("div");
+        const arrow = document.createElement("img")
+        arrow.src = "../src/icons/windarrow.svg";
+        arrow.classList.add("small-arrow");
+        arrow.style.setProperty("transform", `rotate(${hour.wind_deg}deg)`);
+        windArrow.classList.add("wind-arrow");
+        windArrow.appendChild(arrow);
+        windHolder.appendChild(windArrow);
+
+        hourHolder.append(timeHolder, typeIcon, tempHolder, windHolder);
         inner.append(hourHolder);
     }
     outer.appendChild(inner);
@@ -98,6 +156,7 @@ const createHourly = (hourly) => {
 const displayReport = (report) => {
     createCurrent(report);
     createHourly(report.hourly);
+    createDaily(report.daily);
 }
 
 export { displayReport }
