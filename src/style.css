@@ -25,7 +25,7 @@ body {
 }
 
 .header {
-    backdrop-filter: brightness(0.8);
+    backdrop-filter: brightness(0.7);
     padding: 0 2rem;
     display: grid;
     grid-template-columns: 10rem minmax(20rem, auto) 10rem;
@@ -37,7 +37,7 @@ body {
 
 @media only screen and (max-width: 800px) {
     body {
-        grid-template-rows: auto;
+        grid-template-rows: 8rem auto;
     }
 
     .header {
@@ -102,7 +102,7 @@ body {
 }
 
 .current-inner {
-    backdrop-filter: brightness(0.8);
+    backdrop-filter: brightness(0.7);
     display: flex;
     flex-direction: column;
     padding: 1rem 1rem 3rem 1rem;
@@ -142,7 +142,7 @@ body {
 .small-holder {
     position: relative;
     margin: 0.1rem;
-    backdrop-filter: brightness(0.8);
+    backdrop-filter: brightness(0.7);
     padding: 0.6rem;
     display: flex;
     flex-direction: column;
@@ -160,6 +160,13 @@ body {
     grid-template-columns: repeat(7, 1fr);
     overflow-x: auto;
     overflow-y: hidden;
+}
+
+.error {
+    backdrop-filter: brightness(0.7);
+    color: var(--accent-color);
+    text-align: center;
+    padding: 1rem;
 }
 
 /*Weather Icons*/

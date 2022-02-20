@@ -78,7 +78,6 @@ const displayReport = (report = savedReport) => {
     createDaily(report.daily);
     document.documentElement.style.setProperty("--weather-image",
         `url("./images/${report.current.weather[0].icon}.jpg")`);
-    console.log(`url("./images/${report.current.weather[0].icon}.jpg"`);
 }
 
 export { displayReport }

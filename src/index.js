@@ -19,15 +19,3 @@ document.getElementById("units-toggle").addEventListener("click", () => {
     units.toggleUnits();
     displayReport();
 })
-
-/*
-Changes:
-2. Add error catching to location to check if place exists.
-4. Error checking if takes too long to come back.
-5. General error just if something else is thrown.
-
-10. make my own svg icons.
-
-13. Optional: add a ‘loading’ component that displays from the time the 
-    form is submitted until the information comes back from the API.
-*/
