@@ -92,7 +92,7 @@ body {
 
 .main {
     width: max(25rem, 40vw);
-    margin: max(1rem, 3vh);
+    margin: 1rem;
     display: grid;
     grid-template-rows: auto;
     align-content: start;
