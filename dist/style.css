@@ -46,10 +46,6 @@ body {
         flex-direction: column;
         gap: 1rem;
     }
-
-    .main {
-        margin: 0.5rem;
-    }
 }
 
 .title{
@@ -120,7 +116,7 @@ body {
 
 .country {
     font-size: max(1rem, 1.5vw);
-    padding: 2rem;
+    padding-left: 2rem;
 }
 
 .weather {
