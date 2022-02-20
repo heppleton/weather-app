@@ -10,7 +10,7 @@ const createReport = ({ name, state, country }, { current, hourly, daily, timezo
 
 const getLatLon = async (placename) => {
     try {
-        const geocodingPromise = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${placename}&limit=1&appid=${OWM_API_KEY}`);
+        const geocodingPromise = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${placename}&limit=1&appid=${OWM_API_KEY}`);
         const locationPromise = await geocodingPromise.json()
         return locationPromise;
     }

@@ -2,7 +2,6 @@
 
 import { newRequest } from "./retrieve.js"
 import { displayReport } from "./report.js";
-import { loadingMessage } from "./error.js";
 import { units } from "./units.js"
 
 newRequest("Portland");
