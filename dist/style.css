@@ -91,7 +91,7 @@ body {
 }
 
 .main {
-    width: max(25rem, 40vw);
+    width: max(24rem, 40vw);
     margin: max(1rem, 3vh);
     display: grid;
     grid-template-rows: auto;
@@ -111,10 +111,12 @@ body {
 
 .placename {
     font-size: max(2rem, 3vw);
+    padding-bottom: 2rem;
 }
 
 .country {
     font-size: max(1rem, 1.5vw);
+    padding: 2rem;
 }
 
 .weather {

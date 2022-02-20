@@ -7,7 +7,7 @@ const makeTypeHolder = (type, size) => {
     const typeHolder = makeComplexElement("div", []);    
     const typeIcon = makeComplexElement("img",
         [size === "big" ? "weather-icon-big" : "weather-icon-small"],
-        `./dist/icons/${type.icon}.svg`);
+        `../dist/icons/${type.icon}.svg`);
     typeHolder.appendChild(typeIcon);
     return typeHolder;
 }
@@ -15,8 +15,9 @@ const makeTypeHolder = (type, size) => {
 const createCurrent = (report) => {
     const inner = makeComplexElement("div", ["current-inner"]);
     const place = makeComplexElement("div", ["placename"], report.name);
-    const country = makeComplexElement("div", ["country"],
+    const country = makeComplexElement("span", ["country"],
         new Intl.DisplayNames(["en"], { type: "region"}).of(report.country));
+    place.appendChild(country);
 
     const weather = document.createElement("div");
     weather.classList.add("weather")
@@ -25,7 +26,7 @@ const createCurrent = (report) => {
         makeTypeHolder(report.current.weather[0], "big")
         );
 
-    inner.append(place, country, weather);
+    inner.append(place, weather);
 
     const outer = document.querySelector(".current-outer");
     outer.replaceChildren(inner);
