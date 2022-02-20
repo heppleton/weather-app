@@ -26,7 +26,7 @@ const makeWindArrow = (speed, degrees, size) => {
     const inner = makeComplexElement("div",
         ["wind-arrow-inner", size === "big" ? "wind-arrow-big" : "wind-arrow-small"]);
     const arrow = document.createElement("img")
-    arrow.src = "../src/icons/windarrow.svg";
+    arrow.src = "./icons/windarrow.svg";
     arrow.style.setProperty("transform", `rotate(${degrees}deg)`);
 
     inner.appendChild(arrow);

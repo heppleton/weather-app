@@ -7,7 +7,7 @@ const makeTypeHolder = (type, size) => {
     const typeHolder = makeComplexElement("div", []);    
     const typeIcon = makeComplexElement("img",
         [size === "big" ? "weather-icon-big" : "weather-icon-small"],
-        `../src/icons/${type.icon}.svg`);
+        `./icons/${type.icon}.svg`);
     typeHolder.appendChild(typeIcon);
     return typeHolder;
 }
